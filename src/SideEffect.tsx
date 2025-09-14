@@ -73,6 +73,12 @@ export function RemoveScrollSideCar(props: IRemoveScrollEffectProps) {
       return false;
     }
 
+    // allow drag selection of a text, like from an input.
+    const selection = window.getSelection();
+    if (selection && selection.anchorNode?.contains(target)) {
+      return false;
+    }
+
     let canBeScrolledInMainDirection = locationCouldBeScrolled(moveDirection, target);
 
     if (!canBeScrolledInMainDirection) {
